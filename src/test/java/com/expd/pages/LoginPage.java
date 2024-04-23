@@ -1,11 +1,13 @@
 package com.expd.pages;
 
+import com.expd.driverManager.DriverManagerFile;
+import com.expd.driverManager.DriverSafeThread;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import java.time.Duration;
 
-public class LoginPage {
+public class LoginPage{
 
     WebDriver driver;
     public LoginPage(WebDriver driver){
@@ -20,38 +22,36 @@ public class LoginPage {
 
 
     public void launchURL() {
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\gs1-sohaila\\Desktop\\Selenium_Training\\chromedriver-win64\\chromedriverv123\\chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("https://www.demoblaze.com/");
+        DriverManagerFile.initDriver();
+        DriverSafeThread.getDriver().get("https://www.demoblaze.com/");
     }
 
     public void seleniumWait() {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+        DriverSafeThread.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
     }
 
     public void clickLoginHome() throws InterruptedException {
-        driver.findElement(btn_loginHome).click();
+        DriverSafeThread.getDriver().findElement(btn_loginHome).click();
         Thread.sleep(3000);
     }
 
     public void enterUserName(String userName) throws InterruptedException {
-        driver.findElement(txt_userName_login).sendKeys(userName);
+        DriverSafeThread.getDriver().findElement(txt_userName_login).sendKeys(userName);
         Thread.sleep(3000);
     }
 
     public void enterPassword(String pwd) throws InterruptedException {
-        driver.findElement(txt_password_login).sendKeys(pwd);
+        DriverSafeThread.getDriver().findElement(txt_password_login).sendKeys(pwd);
         Thread.sleep(3000);
     }
 
     public void clickLoginBtn() throws InterruptedException {
-        driver.findElement(btn_login).click();
+        DriverSafeThread.getDriver().findElement(btn_login).click();
         Thread.sleep(3000);
     }
 
     public void closeBrowser(){
-        driver.close();
+        DriverManagerFile.quitDriver();
     }
 
 

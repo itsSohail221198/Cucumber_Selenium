@@ -8,4 +8,5 @@ Feature: Sample Login feature
     Then user enters the username as "it_is_sohail"
     Then user enters the password as "Sohail"
     Then click the login button in the login popup
+    Then click the logout button
     Then close the browser

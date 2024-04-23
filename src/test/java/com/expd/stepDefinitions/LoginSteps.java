@@ -1,5 +1,6 @@
 package com.expd.stepDefinitions;
 
+import com.expd.pages.HomePage;
 import com.expd.pages.LoginPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -10,6 +11,7 @@ public class LoginSteps {
     WebDriver driver;
 
     LoginPage loginPage = new LoginPage(driver);
+    HomePage homePage = new HomePage(driver);
 
 
 
@@ -47,5 +49,10 @@ public class LoginSteps {
     @Then("close the browser")
     public void closeTheBrowser() {
         loginPage.closeBrowser();
+    }
+
+    @Then("click the logout button")
+    public void clickTheLogoutButton() {
+        homePage.clickLogOut();
     }
 }
